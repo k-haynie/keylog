@@ -37,7 +37,6 @@ def main():
 
     def set_timeout(time):
         global timeout
-        print("Setting timeout: " + str(time))
         timeout = time
 
     def pause_callback(mixer, time):
@@ -49,12 +48,10 @@ def main():
                 time.Clock().tick(10)
 
             set_timeout(5)
-            print(running)
 
             if mixer.music.get_busy():
                 mixer.music.pause()
         
-        print("exiting")
         return
             
     # start a new thread to pause the music after 500ms of no typing
@@ -104,3 +101,5 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+
