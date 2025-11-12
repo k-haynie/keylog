@@ -6,6 +6,9 @@ import pyxhook
 import pygame
 import threading
 
+# necessary for assembly since no env variables get passed
+os.environ['DISPLAY'] = ':1'
+
 def main():
     global running
     global timeout
