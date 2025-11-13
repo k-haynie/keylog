@@ -20,7 +20,7 @@ def main():
     chars = "    "
 
     # treat keylogger as lockfile
-    if os.exists(log_file):
+    if os.path.exists(log_file):
         return
     else:
         with open(log_file, 'a') as f:
