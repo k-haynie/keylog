@@ -18,6 +18,13 @@ def main():
     # Specify the name of the file (can be changed )
     log_file = f'{os.getcwd()}/.keys.log'
     chars = "    "
+
+    # treat keylogger as lockfile
+    if os.exists(log_file):
+        return
+    else:
+        with open(log_file, 'a') as f:
+            pass
     
     # initialize the pygame mixer
     pygame.mixer.init()
