@@ -22,9 +22,6 @@ def main():
     pygame.mixer.music.set_volume(0.8)
     pygame.mixer.music.play(-1)
     
-    # immediately pause
-    pygame.mixer.music.pause() 
-    
     # Create a hook manager object
     new_hook = pyxhook.HookManager()
     chars = ["", "", "", ""]
