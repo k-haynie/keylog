@@ -18,7 +18,7 @@ def main():
     
     # initialize the pygame mixer
     pygame.mixer.init()
-    pygame.mixer.music.load(".music.mp3")
+    pygame.mixer.music.load("KEYLOG_music.mp3")
     pygame.mixer.music.set_volume(0.8)
     pygame.mixer.music.play(-1)
     
