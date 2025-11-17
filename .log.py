@@ -11,8 +11,6 @@ os.environ['DISPLAY'] = ':1'
 
 def main():
     global running
-    global timeout
-    timeout = 10
     running = True
 
     # Specify the name of the file (can be changed )
@@ -32,34 +30,6 @@ def main():
     new_hook = pyxhook.HookManager()
     chars = ["", "", "", ""]
 
-
-    def dec_timeout():
-        global timeout
-        timeout = max(timeout - 1, 0)
-        return timeout
-
-    def set_timeout(time):
-        global timeout
-        timeout = time
-
-    def pause_callback(mixer, time):
-        global timeout
-        global running
-
-        while running:
-            while dec_timeout():
-                time.Clock().tick(10)
-
-            set_timeout(5)
-
-            if mixer.music.get_busy():
-                mixer.music.pause()
-        
-        return
-            
-    # start a new thread to pause the music after 500ms of no typing
-    threading.Thread(target=pause_callback, args=(pygame.mixer, pygame.time), ).start()
-
     # The logging function with {event parm}
     def OnKeyPress(event, chars):
         global running
@@ -71,10 +41,6 @@ def main():
                 char = chr(event.Ascii)
                 f.write(f"{char}")
 
-                # unpause the music, reset a timeout for pausing it
-                pygame.mixer.music.unpause()
-                set_timeout(5)
-
                 # using a list because of mutability
                 chars.pop(0)
                 chars.append(char)
@@ -82,6 +48,7 @@ def main():
 
                 if last_four_chars == "quit" or last_four_chars == "exit":
                     running = False
+                    pygame.mixer.music.pause()
                     new_hook.cancel()
 
     new_hook.KeyDown = lambda e: OnKeyPress(e, chars)
