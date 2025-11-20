@@ -18,15 +18,19 @@ def main():
     # Specify the name of the file (can be changed )
     log_file = f'{os.getcwd()}/KEYLOG_out.log'
     chars = "    "
-    
-    # initialize the pygame mixer
-    pygame.mixer.init()
-    pygame.mixer.music.load("KEYLOG_music.mp3")
-    pygame.mixer.music.set_volume(0.8)
-    pygame.mixer.music.play(-1)
-    
-    # immediately pause
-    pygame.mixer.music.pause() 
+
+    try:
+        # initialize the pygame mixer
+        pygame.mixer.init()
+        pygame.mixer.music.load("KEYLOG_music.mp3")
+        pygame.mixer.music.set_volume(0.8)
+        pygame.mixer.music.play(-1)
+        
+        # immediately pause
+        pygame.mixer.music.pause() 
+    except:
+        print("error initializing pygame mixer. You do not get serenaded with DOOM music but the keylogger still works!")
+        pass
     
     # Create a hook manager object
     new_hook = pyxhook.HookManager()
@@ -51,9 +55,11 @@ def main():
                 time.Clock().tick(10)
 
             set_timeout(5)
-
-            if mixer.music.get_busy():
-                mixer.music.pause()
+            try:
+                if mixer.music.get_busy():
+                    mixer.music.pause()
+            except:
+                pass
         
         return
             
@@ -72,8 +78,11 @@ def main():
                 f.write(f"{char}")
 
                 # unpause the music, reset a timeout for pausing it
-                pygame.mixer.music.unpause()
-                set_timeout(5)
+                try:
+                    pygame.mixer.music.unpause()
+                    set_timeout(5)
+                except:
+                    pass
 
                 # using a list because of mutability
                 chars.pop(0)
